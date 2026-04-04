@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#080808] text-brand-light font-sans antialiased overflow-x-hidden selection:bg-brand-accent/30 selection:text-white;
+  }
+}
+
+/* Viswave inspired exact subtle grid */
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center top;
+}
+
+/* Custom dark scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A1A1A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FC6E20;
+}
