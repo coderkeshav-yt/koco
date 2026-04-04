@@ -145,7 +145,7 @@ export default function LandingPage() {
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-brand-accent/20 blur-[100px] rounded-full pointer-events-none -z-10" />
               <div className="w-full max-w-[600px] scale-110 md:scale-125 lg:scale-110 relative z-10 hover:scale-[1.15] lg:hover:scale-[1.15] transition-transform duration-700">
                 <DotLottieReact
-                  src="https://lottie.host/b6dcecf0-8fd8-49b6-b9a3-f7f64535f5a8/Zm8Mf66uf7.lottie"
+                  src="/animations/hero-animation.lottie"
                   loop
                   autoplay
                   className="w-full h-auto drop-shadow-[0_20px_50px_rgba(252,110,32,0.15)]"
@@ -180,7 +180,7 @@ export default function LandingPage() {
         <section id="recent-work" className="py-20 md:py-32 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
             {/* Section Header - Restored to original position */}
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-white/10 text-white/70 text-xs font-semibold uppercase tracking-wider">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
