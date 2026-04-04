@@ -9,7 +9,6 @@ export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState<{id: string, isShort: boolean} | null>(null);
 
-  // Form State
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,7 +41,6 @@ export default function LandingPage() {
 
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLWVHr9gsSTrfqUjEK47_gKpuxkXsjKePIeTd7HYqDVymSBEnkvbho_Rx1ZxSUa6kmtA/exec';
 
-    // URLSearchParams works with no-cors mode (simple content-type)
     const params = new URLSearchParams();
     params.append('name', formData.name);
     params.append('email', formData.email);
@@ -81,7 +79,7 @@ export default function LandingPage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Trigger minimized state if scrolled past 50px
+
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
@@ -90,10 +88,9 @@ export default function LandingPage() {
 
   return (
     <div className="relative w-full min-h-screen bg-[#080808] font-sans">
-      {/* Viswave-inspired Background Grid */}
+      
       <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60 mix-blend-screen" />
 
-      {/* Floating Minimalist Navbar (Minimizes on Scroll) */}
       <nav className={`fixed left-1/2 -translate-x-1/2 z-50 flex items-center justify-between rounded-full backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 ease-out ${isScrolled
         ? 'top-2 md:top-4 w-[95%] sm:w-[85%] md:w-[75%] max-w-3xl px-1.5 py-1.5 bg-[#080808]/90'
         : 'top-4 md:top-6 w-[95%] sm:w-[90%] md:w-[85%] max-w-4xl px-2 py-2 md:px-2 md:py-2 bg-[#121212]/80 shadow-none'
@@ -113,11 +110,10 @@ export default function LandingPage() {
       </nav>
 
       <main className="relative z-10">
-        {/* Section 1: Hero */}
+        
         <section className="min-h-[100dvh] flex items-center pt-28 md:pt-24 pb-12 px-4 sm:px-6 relative">
           <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center z-10 relative">
 
-            {/* Left Column: Text */}
             <div className="flex flex-col items-center lg:items-start text-center lg:text-left z-10 relative mt-8 lg:mt-0">
               <h1 className="text-[2.5rem] sm:text-5xl lg:text-[4rem] font-bold mb-4 md:mb-6 tracking-tight leading-[1.1] text-white">
                 Make Every Frame <br className="hidden lg:block" />
@@ -140,7 +136,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Right Column: Lottie Animation */}
             <div className="relative w-full h-full flex flex-col items-center justify-center pt-8 lg:pt-0">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-brand-accent/20 blur-[100px] rounded-full pointer-events-none -z-10" />
               <div className="w-full max-w-[600px] scale-110 md:scale-125 lg:scale-110 relative z-10 hover:scale-[1.15] lg:hover:scale-[1.15] transition-transform duration-700">
@@ -156,7 +151,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Section 2: Trust & Statistics */}
         <section className="py-12 md:py-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto bg-[#111111] border border-white/10 rounded-3xl p-8 shadow-2xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
@@ -176,21 +170,15 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Section 3: Recent Work */}
         <section id="recent-work" className="py-20 md:py-32 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            {/* Section Header - Restored to original position */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-white/10 text-white/70 text-xs font-semibold uppercase tracking-wider">
-                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
-                  Recent Projects
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">Recent Work</h2>
+            
+            <div className="mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-white/10 text-white/70 text-xs font-semibold uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
+                Recent Projects
               </div>
-              <Link to="/projects" className="text-sm font-semibold text-white/50 hover:text-white transition-colors border-b border-transparent hover:border-white pb-1">
-                View Full Portfolio
-              </Link>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">Recent Work</h2>
             </div>
 
             {(() => {
@@ -232,7 +220,7 @@ export default function LandingPage() {
                   }}
                 >
                   <div className="relative rounded-2xl overflow-hidden aspect-video bg-[#111111] border border-white/10 mb-4 shadow-lg group-hover:shadow-[0_20px_50px_rgba(252,110,32,0.15)] group-hover:border-brand-accent/30 transition-all duration-500">
-                    {/* Glowing highlight on hover */}
+                    
                     <div className="absolute inset-0 bg-gradient-to-tr from-brand-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors duration-500 z-10" />
@@ -244,7 +232,6 @@ export default function LandingPage() {
                       </div>
                     </div>
 
-                    {/* Bottom Label on Hover */}
                     <div className="absolute bottom-4 left-4 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                       <span className="bg-black/80 backdrop-blur-md text-[10px] text-white px-3 py-1 rounded-full border border-white/10 font-bold uppercase tracking-widest">Preview Edit</span>
                     </div>
@@ -255,12 +242,11 @@ export default function LandingPage() {
 
               return (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-6">
-                  {/* Top Left Feature - Standard Card */}
+                  
                   <div className="col-span-1">
                     <ProjectCard item={projects[0]} />
                   </div>
 
-                  {/* Top Right Text (Featured Project Details) */}
                   <div className="col-span-1 md:col-span-2 flex flex-col justify-center items-start md:pl-10 lg:pl-16 mb-4 md:mb-0">
                     <div className="inline-flex items-center gap-2 px-3 py-1 mb-3 md:mb-4 rounded-full border border-white/10 text-white/70 text-xs font-semibold uppercase tracking-wider">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
@@ -272,7 +258,6 @@ export default function LandingPage() {
                     </p>
                   </div>
 
-                  {/* Bottom Row */}
                   <div className="col-span-1">
                     <ProjectCard item={projects[1]} />
                   </div>
@@ -285,10 +270,16 @@ export default function LandingPage() {
                 </div>
               );
             })()}
+
+            <div className="mt-12 md:mt-16 flex justify-center">
+              <Link to="/projects" className="px-8 py-3.5 rounded-full border border-white/20 hover:border-white/40 text-white font-semibold text-sm tracking-wide transition-colors flex items-center gap-2 group hover:bg-white/5">
+                View Full Portfolio
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* Section 4: Vertical Content */}
         <section className="py-20 md:py-24 px-4 sm:px-6 border-y border-white/5 bg-[#0A0A0A]">
           <div className="max-w-5xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-white/10 text-white/70 text-xs font-semibold uppercase tracking-wider">
@@ -328,7 +319,7 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        {/* Section 5: End-to-End Service */}
+        
         <section id="services" className="py-20 md:py-24 px-4 sm:px-6 border-b border-white/5 bg-[#080808]">
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col items-center text-center mb-12 md:mb-16">
@@ -365,15 +356,13 @@ export default function LandingPage() {
                 }
               ].map((service, i) => (
                 <div key={i} className="group relative flex flex-col bg-[#111111] p-8 md:p-10 rounded-[2.5rem] border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden cursor-default hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-                  {/* Subtle top gradient glow */}
+                  
                   <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                  {/* Giant Watermarked Number */}
                   <div className="absolute -bottom-8 -right-4 text-[14rem] font-bold text-white/[0.035] group-hover:text-brand-accent/[0.08] group-hover:-translate-y-6 group-hover:-rotate-3 transition-all duration-700 leading-none pointer-events-none select-none font-mono z-0">
                     {i + 1}
                   </div>
 
-                  {/* Premium Isolated Number Badge or Icon */}
                   <div className="w-16 h-16 rounded-[1.2rem] bg-gradient-to-br from-white/10 to-transparent border border-white/10 flex items-center justify-center text-white/70 font-bold text-xl mb-10 group-hover:from-brand-accent group-hover:to-[#cc5210] group-hover:text-black group-hover:shadow-[0_10px_30px_rgba(252,110,32,0.4)] group-hover:border-brand-accent/50 transition-all duration-500 relative z-10">
                     {(service as any).iconWhite ? (
                       <div className="relative w-8 h-8">
@@ -411,9 +400,9 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        {/* Section 6: The Edge / Why Us */}
+        
         <section id="why-us" className="py-20 md:py-32 px-4 sm:px-6 relative overflow-hidden">
-          {/* Subtle background glow */}
+          
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-brand-accent/5 blur-[80px] md:blur-[120px] rounded-full pointer-events-none -z-10" />
 
           <div className="max-w-5xl mx-auto z-10 relative">
@@ -432,10 +421,8 @@ export default function LandingPage() {
               </p>
             </div>
 
-            {/* Bento Grid layout referencing sample figure */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
 
-              {/* Card 1: Algorithm-First Editing (Wide, Top Left) */}
               <div className="lg:col-span-8 bg-[#0D0D0D] border border-white/5 rounded-3xl p-6 md:p-10 relative overflow-hidden group">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
                   <div className="md:col-span-5 flex flex-col justify-center relative z-10">
@@ -450,7 +437,6 @@ export default function LandingPage() {
                     </p>
                   </div>
 
-                  {/* Visual: Video Player Mockup */}
                   <div className="md:col-span-7 relative flex items-center z-0 min-h-[220px] md:min-h-0 mt-6 md:mt-0">
                     <div className="absolute top-1/2 -translate-y-1/2 left-0 md:left-4 w-full md:w-[130%] bg-[#141414] rounded-2xl border border-white/5 p-4 shadow-2xl flex gap-4 transition-transform duration-500 group-hover:-translate-x-2">
                       <div className="w-2/3 aspect-video bg-[#080808] rounded-xl flex items-center justify-center relative overflow-hidden border border-white/5">
@@ -477,7 +463,6 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Card 2: Cinematic Quality (Narrow, Top Right) */}
               <div className="lg:col-span-4 bg-[#0D0D0D] border border-white/5 rounded-3xl p-8 md:p-10 flex flex-col relative overflow-hidden group">
                 <div className="flex items-center gap-3 mb-4 relative z-10">
                   <div className="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400">
@@ -489,7 +474,6 @@ export default function LandingPage() {
                   Hollywood-grade color grading and spatial audio mixing.
                 </p>
 
-                {/* Visual: Audio/Color tracks */}
                 <div className="mt-auto flex flex-col gap-4 relative z-10 group-hover:scale-[1.02] transition-transform duration-500">
                   {[1, 2, 3].map((i) => (
                     <div key={i} className="bg-[#141414] border border-white/5 p-3.5 rounded-xl flex items-center gap-4">
@@ -504,7 +488,6 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Card 3: Performance Stats (Narrow, Bottom Left) */}
               <div className="lg:col-span-4 bg-[#0D0D0D] border border-white/5 rounded-3xl p-8 md:p-10 flex flex-col relative overflow-hidden group">
                 <div className="flex items-center gap-3 mb-4 relative z-10">
                   <div className="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400">
@@ -516,7 +499,6 @@ export default function LandingPage() {
                   Track completion rates across all your campaigns and analyze audience retention automatically.
                 </p>
 
-                {/* Visual: Stats Graph */}
                 <div className="mt-auto bg-[#141414] border border-white/5 rounded-xl p-5 relative z-10 flex flex-col">
                   <div className="flex justify-between items-end mb-6">
                     <div>
@@ -540,7 +522,6 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Card 4: Zero Friction Workflow (Wide, Bottom Right) */}
               <div className="lg:col-span-8 bg-[#0D0D0D] border border-white/5 rounded-3xl p-8 md:p-10 relative overflow-hidden group">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
                   <div className="md:col-span-5 flex flex-col justify-center relative z-10">
@@ -555,7 +536,6 @@ export default function LandingPage() {
                     </p>
                   </div>
 
-                  {/* Visual: Feedback App Mockup */}
                   <div className="md:col-span-7 relative flex items-center z-0 min-h-[260px] md:min-h-0 mt-6 md:mt-0">
                     <div className="absolute top-1/2 -translate-y-1/2 left-0 md:left-4 w-[110%] md:w-[130%] bg-[#141414] rounded-xl border border-white/5 shadow-2xl overflow-hidden transition-transform duration-500 group-hover:-translate-x-2">
                       <div className="bg-[#1A1A1A] px-4 py-3 border-b border-white/5 flex justify-between items-center">
@@ -602,7 +582,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Section 7: About Us */}
         <section id="about" className="py-20 md:py-24 px-4 sm:px-6 border-t border-white/5">
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
@@ -621,20 +600,20 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3] bg-[#111111] border border-white/10">
-              <img
-                src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1000&q=80"
-                alt="Creative Team"
-                className="w-full h-full object-cover opacity-60 grayscale"
+              <DotLottieReact
+                src="/animations/about-animation.lottie"
+                loop
+                autoplay
+                className="w-full h-full object-cover opacity-80 scale-125"
               />
             </div>
           </div>
         </section>
 
-        {/* Section 8: Project Inquiry Form */}
         <section id="contact" className="py-20 md:py-32 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto">
             <div className="bg-[#111111] p-6 sm:p-8 md:p-16 rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
-              {/* Subtle top glow line like the image */}
+              
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50" />
 
               <div className="text-center mb-10 md:mb-16">
@@ -648,7 +627,7 @@ export default function LandingPage() {
 
               <form className="space-y-8 md:space-y-10" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 gap-8 md:gap-10">
-                  {/* Name */}
+                  
                   <div className="space-y-3">
                     <label className="text-xs font-bold text-white/70 uppercase tracking-widest flex items-center gap-1">
                       Name <span className="text-brand-accent">*</span>
@@ -664,7 +643,6 @@ export default function LandingPage() {
                     />
                   </div>
 
-                  {/* Email */}
                   <div className="space-y-3">
                     <label className="text-xs font-bold text-white/70 uppercase tracking-widest flex items-center gap-1">
                       Email Address <span className="text-brand-accent">*</span>
@@ -680,7 +658,6 @@ export default function LandingPage() {
                     />
                   </div>
 
-                  {/* Contact Number */}
                   <div className="space-y-3">
                     <label className="text-xs font-bold text-white/70 uppercase tracking-widest flex items-center gap-1">
                       Contact Number <span className="text-brand-accent">*</span>
@@ -690,13 +667,13 @@ export default function LandingPage() {
                       required
                       value={formData.contact}
                       onChange={handleInputChange}
-                      type="tel"
+                      type="number"
+                      min="0"
                       className="w-full bg-transparent border-b border-white/10 py-3 focus:outline-none focus:border-brand-accent transition-colors placeholder:text-white/20 text-white text-base"
-                      placeholder="+91 XXXXX XXXXX"
+                      placeholder="e.g. 9876543210"
                     />
                   </div>
 
-                  {/* Company */}
                   <div className="space-y-3">
                     <label className="text-xs font-bold text-white/70 uppercase tracking-widest flex items-center gap-2">
                       Company / Brand Name <span className="text-white/30 lowercase font-normal">(If applicable)</span>
@@ -711,7 +688,6 @@ export default function LandingPage() {
                     />
                   </div>
 
-                  {/* Services Required */}
                   <div className="space-y-6">
                     <label className="text-xs font-bold text-white/70 uppercase tracking-widest flex items-center gap-1 mb-4">
                       Services Required <span className="text-brand-accent">*</span>
@@ -743,7 +719,6 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  {/* Project Description */}
                   <div className="space-y-3">
                     <label className="text-xs font-bold text-white/70 uppercase tracking-widest">Project Description</label>
                     <textarea
@@ -756,16 +731,16 @@ export default function LandingPage() {
                     ></textarea>
                   </div>
 
-                  {/* Estimated Budget */}
                   <div className="space-y-3">
                     <label className="text-xs font-bold text-white/70 uppercase tracking-widest">Estimated Budget</label>
                     <input
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
-                      type="text"
+                      type="number"
+                      min="0"
                       className="w-full bg-transparent border-b border-white/10 py-3 focus:outline-none focus:border-brand-accent transition-colors placeholder:text-white/20 text-white text-base"
-                      placeholder="e.g. ₹5,000 - ₹10,000"
+                      placeholder="e.g. 5000"
                     />
                   </div>
                 </div>
@@ -792,12 +767,10 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="py-8 md:py-12 px-6 border-t border-white/5 bg-[#0A0A0A]">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 mb-6 md:mb-10">
 
-              {/* Brand Info */}
               <div className="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
                 <Link to="/" className="flex items-center justify-center md:justify-start hover:opacity-80 transition-opacity mb-3">
                   <img src="/logo/koco_logo.png" alt="KOCO Logo" className="h-8 w-auto object-contain" />
@@ -808,10 +781,8 @@ export default function LandingPage() {
                 </p>
               </div>
 
-              {/* Contact Info */}
               <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6 w-full max-w-sm mx-auto md:max-w-none">
 
-                {/* Phone */}
                 <div className="flex flex-row items-center sm:flex-col sm:items-start gap-4 sm:gap-2 text-left">
                   <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
                     <Phone className="w-4 h-4" />
@@ -824,7 +795,6 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                {/* Email */}
                 <div className="flex flex-row items-center sm:flex-col sm:items-start gap-4 sm:gap-2 text-left">
                   <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
                     <Mail className="w-4 h-4" />
@@ -837,7 +807,6 @@ export default function LandingPage() {
                   </div>
                 </div>
 
-                {/* Address */}
                 <div className="flex flex-row items-center sm:flex-col sm:items-start gap-4 sm:gap-2 text-left">
                   <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
                     <MapPin className="w-4 h-4" />
@@ -854,7 +823,6 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Bottom Bar */}
             <div className="pt-6 border-t border-white/[0.03] flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
               <p className="text-white/30 text-[10px] font-semibold tracking-wider">
                 © {new Date().getFullYear()} Kontent Company. All rights reserved.
@@ -866,7 +834,7 @@ export default function LandingPage() {
             </div>
           </div>
         </footer>
-        {/* Video Player Modal */}
+        
         {selectedVideo && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 md:px-8 py-10 md:py-12">
             <div

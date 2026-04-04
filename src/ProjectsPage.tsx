@@ -52,11 +52,11 @@ export default function ProjectsPage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    // Scroll to the top of the page when the component mounts
+
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
-      // Trigger minimized state if scrolled past 50px
+
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
@@ -69,10 +69,9 @@ export default function ProjectsPage() {
 
   return (
     <div className="relative w-full min-h-screen bg-[#080808] font-sans">
-      {/* Background grid */}
+      
       <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60 mix-blend-screen" />
 
-      {/* Floating Minimalist Navbar (Minimizes on Scroll) */}
       <nav className={`fixed left-1/2 -translate-x-1/2 z-50 flex items-center justify-between rounded-full backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 ease-out ${isScrolled
         ? 'top-2 md:top-4 w-[95%] sm:w-[85%] md:w-[75%] max-w-3xl px-1.5 py-1.5 bg-[#080808]/90'
         : 'top-4 md:top-6 w-[95%] sm:w-[90%] md:w-[85%] max-w-4xl px-2 py-2 md:px-2 md:py-2 bg-[#121212]/80 shadow-none'
@@ -94,7 +93,6 @@ export default function ProjectsPage() {
       <main className="relative z-10 pt-36 pb-24 px-6">
         <div className="max-w-7xl mx-auto">
 
-          {/* Header */}
           <div className="mb-12 md:mb-16 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 md:mb-6 rounded-full border border-white/10 text-white/60 text-xs font-semibold uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
@@ -108,7 +106,6 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          {/* Filter Tabs */}
           <div className="flex flex-wrap justify-center gap-3 mb-16">
             {categories.map(cat => (
               <button
@@ -124,7 +121,6 @@ export default function ProjectsPage() {
             ))}
           </div>
 
-          {/* Featured Project (first "All" item) */}
           {activeCategory === "All" && (
             <div
               className="group relative w-full aspect-[21/9] rounded-[2rem] overflow-hidden mb-8 cursor-pointer border border-white/5 hover:border-brand-accent/20 transition-all duration-500"
@@ -154,7 +150,6 @@ export default function ProjectsPage() {
             </div>
           )}
 
-          {/* Project Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {(activeCategory === "All" ? filtered.slice(1) : filtered).map((project, i) => (
               <div
@@ -166,7 +161,7 @@ export default function ProjectsPage() {
                 }}
               >
                 <div className="relative rounded-2xl overflow-hidden aspect-video bg-[#111111] border border-white/5 mb-4 shadow-lg group-hover:shadow-[0_20px_50px_rgba(252,110,32,0.12)] group-hover:border-brand-accent/20 transition-all duration-500">
-                  {/* Glow on hover */}
+                  
                   <div className="absolute inset-0 bg-gradient-to-tr from-brand-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors duration-500 z-10" />
                   <img
@@ -179,7 +174,7 @@ export default function ProjectsPage() {
                       <Play className="w-5 h-5 ml-1 fill-current" />
                     </div>
                   </div>
-                  {/* Tags */}
+                  
                   <div className="absolute bottom-3 left-3 z-20 flex gap-1.5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     {project.tags.map(tag => (
                       <span key={tag} className="bg-black/70 backdrop-blur-md text-[9px] text-white px-2 py-1 rounded-full border border-white/10 font-bold uppercase tracking-widest">{tag}</span>
@@ -192,7 +187,6 @@ export default function ProjectsPage() {
             ))}
           </div>
 
-          {/* Empty state */}
           {filtered.length === 0 && (
             <div className="text-center py-32">
               <p className="text-white/30 text-lg font-medium">No projects in this category yet.</p>
@@ -205,12 +199,10 @@ export default function ProjectsPage() {
         </div>
       </main>
 
-      {/* Footer */}
       <footer className="py-8 md:py-12 px-6 border-t border-white/5 bg-[#0A0A0A]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 mb-6 md:mb-10">
-            
-            {/* Brand Info */}
+
             <div className="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left">
               <Link to="/" className="flex items-center justify-center md:justify-start hover:opacity-80 transition-opacity mb-3">
                 <img src="/logo/koco_logo.png" alt="KOCO Logo" className="h-8 w-auto object-contain" />
@@ -221,10 +213,8 @@ export default function ProjectsPage() {
               </p>
             </div>
 
-            {/* Contact Info */}
             <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6 w-full max-w-sm mx-auto md:max-w-none">
-              
-              {/* Phone */}
+
               <div className="flex flex-row items-center sm:flex-col sm:items-start gap-4 sm:gap-2 text-left">
                 <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
                   <Phone className="w-4 h-4" />
@@ -237,7 +227,6 @@ export default function ProjectsPage() {
                 </div>
               </div>
 
-              {/* Email */}
               <div className="flex flex-row items-center sm:flex-col sm:items-start gap-4 sm:gap-2 text-left">
                 <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
                   <Mail className="w-4 h-4" />
@@ -250,7 +239,6 @@ export default function ProjectsPage() {
                 </div>
               </div>
 
-              {/* Address */}
               <div className="flex flex-row items-center sm:flex-col sm:items-start gap-4 sm:gap-2 text-left">
                 <div className="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent shrink-0">
                   <MapPin className="w-4 h-4" />
@@ -267,7 +255,6 @@ export default function ProjectsPage() {
             </div>
           </div>
 
-          {/* Bottom Bar */}
           <div className="pt-6 border-t border-white/[0.03] flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <p className="text-white/30 text-[10px] font-semibold tracking-wider">
               © {new Date().getFullYear()} Kontent Company. All rights reserved.
@@ -280,7 +267,6 @@ export default function ProjectsPage() {
         </div>
       </footer>
 
-      {/* Video Modal */}
       {selectedVideo && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 md:px-8 py-10 md:py-12">
           <div
