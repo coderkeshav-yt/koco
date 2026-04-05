@@ -4,40 +4,40 @@ import { Play, X, ArrowUpRight, Phone, Mail, MapPin } from 'lucide-react';
 
 const projects = [
   {
-    title: "Documentary Vlog",
-    category: "Storytelling",
+    title: "Cinematic Vlog Edit",
+    category: "Youtube Videos",
     tags: ["Documentary", "Color Grading"],
     img: "https://img.youtube.com/vi/6bQJIzYndmc/maxresdefault.jpg",
     url: "https://youtu.be/6bQJIzYndmc?si=tq5tjzSmHILV4uck",
     featured: true,
   },
   {
-    title: "Confidence Built",
-    category: "Color & VFX",
+    title: "Documentary style Edit",
+    category: "Youtube Videos",
     tags: ["Color", "VFX"],
     img: "https://img.youtube.com/vi/B0788bzsoRU/maxresdefault.jpg",
     url: "https://youtu.be/B0788bzsoRU?si=c1ME-ahKjfV9pRLj",
     featured: false,
   },
   {
-    title: "Short Film",
-    category: "Pacing & Styling",
+    title: "Open Box Films - Trailer",
+    category: "Short films",
     tags: ["Film", "Editing"],
     img: "https://img.youtube.com/vi/ve8vEoTaKPg/maxresdefault.jpg",
     url: "https://youtu.be/ve8vEoTaKPg?si=o5Vdli4cTWiOhl5w",
     featured: false,
   },
   {
-    title: "Cinematic Tech Review",
-    category: "Editing & Sound",
-    tags: ["Editing", "Sound Design"],
+    title: "Docwise SaaS Explainer",
+    category: "Motion graphics",
+    tags: ["Motion Design", "AI Video"],
     img: "https://img.youtube.com/vi/hYN2yegZgn4/maxresdefault.jpg",
     url: "https://youtu.be/hYN2yegZgn4?si=ClOom0MfXz1edHs_",
     featured: false,
   },
   {
     title: "Cinematic Commercial",
-    category: "Editing & Sound",
+    category: "Youtube Videos",
     tags: ["Commercial", "Editing"],
     img: "https://img.youtube.com/vi/tfN2bBVah_c/maxresdefault.jpg",
     url: "https://youtu.be/tfN2bBVah_c",
@@ -45,8 +45,8 @@ const projects = [
   },
   {
     title: "Visual Breakdown",
-    category: "Color & VFX",
-    tags: ["Color", "VFX"],
+    category: "Motion graphics",
+    tags: ["Motion", "VFX"],
     img: "https://img.youtube.com/vi/sDmlbheeE8w/maxresdefault.jpg",
     url: "https://youtu.be/sDmlbheeE8w?si=MbdERLOJtkxPS5Bz",
     featured: false,
@@ -61,7 +61,7 @@ const projects = [
   { title: "Editing Flow", category: "Reels", tags: ["Flow", "Edit"], img: "https://img.youtube.com/vi/u-bPyxzzdMA/maxresdefault.jpg", url: "https://youtube.com/shorts/u-bPyxzzdMA" },
 ];
 
-const categories = ["All", "Reels", "Storytelling", "Color & VFX", "Pacing & Styling", "Editing & Sound"];
+const categories = ["All", "Youtube Videos", "Reels", "Short films", "Motion graphics", "Graphics and Designs"];
 
 const getVideoInfo = (url: string) => {
   if (url === "#") return null;
