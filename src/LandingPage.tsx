@@ -715,8 +715,7 @@ export default function LandingPage() {
                     {/* Info */}
                     <div className="flex-1 p-6 md:p-8 flex flex-col justify-between">
                       <div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white mb-1 tracking-tight">{founder.name}</h3>
-                        <p className="text-brand-accent text-[10px] font-bold uppercase tracking-[0.2em] mb-4">{founder.role}</p>
+                        <h3 className="text-xl md:text-2xl font-bold text-white mb-4 tracking-tight">{founder.name}</h3>
                         <p className="text-white/50 text-sm leading-relaxed">{founder.desc}</p>
                       </div>
 
