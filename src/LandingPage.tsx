@@ -291,10 +291,10 @@ export default function LandingPage() {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {[
-                { url: "https://youtube.com/shorts/xGKSfE6Jwk4", title: "Tech Mastery", views: "1.5M Views" },
-                { url: "https://youtube.com/shorts/iRHiEUS5JqI", title: "Cinematic Cut", views: "850K Views" },
-                { url: "https://youtube.com/shorts/hGq_sNB1JrM", title: "Fast Pacing", views: "1.2M Views" },
-                { url: "https://youtube.com/shorts/7vPcQGzz42Y", title: "Visual Story", views: "2.1M Views" }
+                { url: "https://youtube.com/shorts/xGKSfE6Jwk4", title: "Leven foods", views: "1.5M Views" },
+                { url: "https://youtube.com/shorts/iRHiEUS5JqI", title: "Stayson Ad", views: "850K Views" },
+                { url: "https://youtube.com/shorts/hGq_sNB1JrM", title: "Fast Paced reel", views: "1.2M Views" },
+                { url: "https://youtube.com/shorts/7vPcQGzz42Y", title: "Visual Storytelling", views: "2.1M Views" }
               ].map((short, idx) => (
                 <div
                   key={idx}
