@@ -31,13 +31,37 @@ const projects = [
     title: "Cinematic Tech Review",
     category: "Editing & Sound",
     tags: ["Editing", "Sound Design"],
-    img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80",
-    url: "#",
+    img: "https://img.youtube.com/vi/hYN2yegZgn4/maxresdefault.jpg",
+    url: "https://youtu.be/hYN2yegZgn4?si=ClOom0MfXz1edHs_",
     featured: false,
   },
+  {
+    title: "Cinematic Commercial",
+    category: "Editing & Sound",
+    tags: ["Commercial", "Editing"],
+    img: "https://img.youtube.com/vi/tfN2bBVah_c/maxresdefault.jpg",
+    url: "https://youtu.be/tfN2bBVah_c",
+    featured: false,
+  },
+  {
+    title: "Visual Breakdown",
+    category: "Color & VFX",
+    tags: ["Color", "VFX"],
+    img: "https://img.youtube.com/vi/sDmlbheeE8w/maxresdefault.jpg",
+    url: "https://youtu.be/sDmlbheeE8w?si=MbdERLOJtkxPS5Bz",
+    featured: false,
+  },
+  // Reels
+  { title: "Tech Mastery", category: "Reels", tags: ["Tech", "Viral"], img: "https://img.youtube.com/vi/xGKSfE6Jwk4/maxresdefault.jpg", url: "https://youtube.com/shorts/xGKSfE6Jwk4" },
+  { title: "Cinematic Cut", category: "Reels", tags: ["Cuts", "Motion"], img: "https://img.youtube.com/vi/GRYAj8oBOdc/maxresdefault.jpg", url: "https://youtube.com/shorts/GRYAj8oBOdc" },
+  { title: "Fast Pacing", category: "Reels", tags: ["Pacing", "Hooks"], img: "https://img.youtube.com/vi/hGq_sNB1JrM/maxresdefault.jpg", url: "https://youtube.com/shorts/hGq_sNB1JrM" },
+  { title: "Visual Story", category: "Reels", tags: ["Story", "Visuals"], img: "https://img.youtube.com/vi/7vPcQGzz42Y/maxresdefault.jpg", url: "https://youtube.com/shorts/7vPcQGzz42Y" },
+  { title: "Brand Identity", category: "Reels", tags: ["Brand", "Style"], img: "https://img.youtube.com/vi/iRHiEUS5JqI/maxresdefault.jpg", url: "https://youtube.com/shorts/iRHiEUS5JqI" },
+  { title: "Social Hook", category: "Reels", tags: ["Social", "Hook"], img: "https://img.youtube.com/vi/2svGsEEL9eo/maxresdefault.jpg", url: "https://youtube.com/shorts/2svGsEEL9eo" },
+  { title: "Editing Flow", category: "Reels", tags: ["Flow", "Edit"], img: "https://img.youtube.com/vi/u-bPyxzzdMA/maxresdefault.jpg", url: "https://youtube.com/shorts/u-bPyxzzdMA" },
 ];
 
-const categories = ["All", "Storytelling", "Color & VFX", "Pacing & Styling", "Editing & Sound"];
+const categories = ["All", "Reels", "Storytelling", "Color & VFX", "Pacing & Styling", "Editing & Sound"];
 
 const getVideoInfo = (url: string) => {
   if (url === "#") return null;
@@ -48,7 +72,7 @@ const getVideoInfo = (url: string) => {
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedVideo, setSelectedVideo] = useState<{id: string, isShort: boolean} | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<{ id: string, isShort: boolean } | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -64,12 +88,12 @@ export default function ProjectsPage() {
   }, []);
 
   const filtered = activeCategory === "All"
-    ? projects
+    ? projects.filter(p => p.category !== "Reels")
     : projects.filter(p => p.category === activeCategory);
 
   return (
     <div className="relative w-full min-h-screen bg-[#080808] font-sans">
-      
+
       <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60 mix-blend-screen" />
 
       <nav className={`fixed left-1/2 -translate-x-1/2 z-50 flex items-center justify-between rounded-full backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 ease-out ${isScrolled
@@ -112,8 +136,8 @@ export default function ProjectsPage() {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all duration-300 ${activeCategory === cat
-                    ? 'bg-brand-accent border-brand-accent text-white shadow-[0_0_20px_rgba(252,110,32,0.3)]'
-                    : 'bg-transparent border-white/10 text-white/50 hover:border-white/30 hover:text-white'
+                  ? 'bg-brand-accent border-brand-accent text-white shadow-[0_0_20px_rgba(252,110,32,0.3)]'
+                  : 'bg-transparent border-white/10 text-white/50 hover:border-white/30 hover:text-white'
                   }`}
               >
                 {cat}
@@ -150,7 +174,7 @@ export default function ProjectsPage() {
             </div>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`grid gap-6 ${activeCategory === "Reels" ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}`}>
             {(activeCategory === "All" ? filtered.slice(1) : filtered).map((project, i) => (
               <div
                 key={i}
@@ -160,8 +184,8 @@ export default function ProjectsPage() {
                   if (info) setSelectedVideo(info);
                 }}
               >
-                <div className="relative rounded-2xl overflow-hidden aspect-video bg-[#111111] border border-white/5 mb-4 shadow-lg group-hover:shadow-[0_20px_50px_rgba(252,110,32,0.12)] group-hover:border-brand-accent/20 transition-all duration-500">
-                  
+                <div className={`relative rounded-2xl overflow-hidden ${project.category === "Reels" ? 'aspect-[9/16]' : 'aspect-video'} bg-[#111111] border border-white/5 mb-4 shadow-lg group-hover:shadow-[0_20px_50px_rgba(252,110,32,0.12)] group-hover:border-brand-accent/20 transition-all duration-500`}>
+
                   <div className="absolute inset-0 bg-gradient-to-tr from-brand-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors duration-500 z-10" />
                   <img
@@ -170,18 +194,18 @@ export default function ProjectsPage() {
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-100"
                   />
                   <div className="absolute inset-0 z-20 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-brand-accent/90 flex items-center justify-center text-white shadow-2xl transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm border border-white/20">
-                      <Play className="w-5 h-5 ml-1 fill-current" />
+                    <div className={`${project.category === "Reels" ? 'w-12 h-12' : 'w-14 h-14'} rounded-full bg-brand-accent/90 flex items-center justify-center text-white shadow-2xl transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm border border-white/20`}>
+                      <Play className={`${project.category === "Reels" ? 'w-4 h-4' : 'w-5 h-5'} ml-1 fill-current`} />
                     </div>
                   </div>
-                  
+
                   <div className="absolute bottom-3 left-3 z-20 flex gap-1.5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    {project.tags.map(tag => (
+                    {project.tags?.map(tag => (
                       <span key={tag} className="bg-black/70 backdrop-blur-md text-[9px] text-white px-2 py-1 rounded-full border border-white/10 font-bold uppercase tracking-widest">{tag}</span>
                     ))}
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-0.5 group-hover:text-brand-accent transition-colors duration-300">{project.title}</h3>
+                <h3 className={`${project.category === "Reels" ? 'text-base' : 'text-lg'} font-bold text-white mb-0.5 group-hover:text-brand-accent transition-colors duration-300`}>{project.title}</h3>
                 <p className="text-white/30 text-xs font-semibold uppercase tracking-widest">{project.category}</p>
               </div>
             ))}
@@ -195,7 +219,6 @@ export default function ProjectsPage() {
               </button>
             </div>
           )}
-
         </div>
       </main>
 
@@ -259,10 +282,7 @@ export default function ProjectsPage() {
             <p className="text-white/30 text-[10px] font-semibold tracking-wider">
               © {new Date().getFullYear()} Kontent Company. All rights reserved.
             </p>
-            <div className="flex gap-6 justify-center">
-              <span className="text-white/20 text-[9px] uppercase font-bold tracking-[0.3em] hover:text-white transition-colors cursor-pointer">Privacy</span>
-              <span className="text-white/20 text-[9px] uppercase font-bold tracking-[0.3em] hover:text-white transition-colors cursor-pointer">Terms</span>
-            </div>
+
           </div>
         </div>
       </footer>
@@ -273,7 +293,7 @@ export default function ProjectsPage() {
             className="absolute inset-0 bg-[#050505]/95 backdrop-blur-2xl"
             onClick={() => setSelectedVideo(null)}
           />
-          <div className={`relative w-full ${selectedVideo.isShort ? 'max-w-sm aspect-[9/16] rounded-3xl' : 'max-w-6xl aspect-video rounded-[2rem]'} bg-black overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(252,110,32,0.15)] animate-in zoom-in-95 fade-in duration-500`}>
+          <div className={`relative w-full ${selectedVideo?.isShort ? 'max-w-sm aspect-[9/16] rounded-3xl' : 'max-w-6xl aspect-video rounded-[2rem]'} bg-black overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(252,110,32,0.15)] animate-in zoom-in-95 fade-in duration-500`}>
             <button
               onClick={() => setSelectedVideo(null)}
               className="absolute top-4 right-4 md:top-6 md:right-6 z-[110] w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:border-brand-accent transition-all duration-300 group"
@@ -281,7 +301,7 @@ export default function ProjectsPage() {
               <X className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
             </button>
             <iframe
-              src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1&rel=0`}
+              src={`https://www.youtube.com/embed/${selectedVideo?.id}?autoplay=1&rel=0`}
               title="Video Player"
               className="w-full h-full border-0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

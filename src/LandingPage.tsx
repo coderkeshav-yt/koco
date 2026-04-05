@@ -7,7 +7,7 @@ const CountUp = (_CountUp as any).default || _CountUp;
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [selectedVideo, setSelectedVideo] = useState<{id: string, isShort: boolean} | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<{ id: string, isShort: boolean } | null>(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -88,7 +88,7 @@ export default function LandingPage() {
 
   return (
     <div className="relative w-full min-h-screen bg-[#080808] font-sans">
-      
+
       <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60 mix-blend-screen" />
 
       <nav className={`fixed left-1/2 -translate-x-1/2 z-50 flex items-center justify-between rounded-full backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 ease-out ${isScrolled
@@ -110,7 +110,7 @@ export default function LandingPage() {
       </nav>
 
       <main className="relative z-10">
-        
+
         <section className="min-h-[100dvh] flex items-center pt-28 md:pt-24 pb-12 px-4 sm:px-6 relative">
           <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center z-10 relative">
 
@@ -172,7 +172,7 @@ export default function LandingPage() {
 
         <section id="recent-work" className="py-20 md:py-32 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            
+
             <div className="mb-12">
               <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full border border-white/10 text-white/70 text-xs font-semibold uppercase tracking-wider">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
@@ -187,8 +187,8 @@ export default function LandingPage() {
                   title: "Cinematic Tech Review",
                   category: "Editing & Sound Design",
                   desc: "A high-octane visual breakdown featuring seamless transitions, raw color grading, and an immersive soundscape built specifically to maximize viewer retention for enthusiasts.",
-                  img: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80",
-                  url: "#"
+                  img: "https://img.youtube.com/vi/hYN2yegZgn4/maxresdefault.jpg",
+                  url: "https://www.youtube.com/watch?v=hYN2yegZgn4"
                 },
                 {
                   title: "Documentary Vlog",
@@ -220,7 +220,7 @@ export default function LandingPage() {
                   }}
                 >
                   <div className="relative rounded-2xl overflow-hidden aspect-video bg-[#111111] border border-white/10 mb-4 shadow-lg group-hover:shadow-[0_20px_50px_rgba(252,110,32,0.15)] group-hover:border-brand-accent/30 transition-all duration-500">
-                    
+
                     <div className="absolute inset-0 bg-gradient-to-tr from-brand-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors duration-500 z-10" />
@@ -242,7 +242,7 @@ export default function LandingPage() {
 
               return (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-6">
-                  
+
                   <div className="col-span-1">
                     <ProjectCard item={projects[0]} />
                   </div>
@@ -290,19 +290,24 @@ export default function LandingPage() {
             <p className="text-white/50 text-base md:text-lg max-w-2xl mb-8 md:mb-12">Hook-driven, fast-paced editing optimized for TikTok, Reels, and Shorts.</p>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              {[1, 2, 3, 4].map((item) => (
-                <div 
-                  key={item} 
+              {[
+                { url: "https://youtube.com/shorts/xGKSfE6Jwk4", title: "Tech Mastery", views: "1.5M Views" },
+                { url: "https://youtube.com/shorts/iRHiEUS5JqI", title: "Cinematic Cut", views: "850K Views" },
+                { url: "https://youtube.com/shorts/hGq_sNB1JrM", title: "Fast Pacing", views: "1.2M Views" },
+                { url: "https://youtube.com/shorts/7vPcQGzz42Y", title: "Visual Story", views: "2.1M Views" }
+              ].map((short, idx) => (
+                <div
+                  key={idx}
                   className="group relative rounded-2xl overflow-hidden aspect-[9/16] bg-[#111111] border border-white/10 cursor-pointer"
                   onClick={() => {
-                    const info = getVideoInfo("https://www.youtube.com/shorts/2iLEARE6LvM");
+                    const info = getVideoInfo(short.url);
                     if (info) setSelectedVideo(info);
                   }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent z-10 opacity-90" />
                   <img
-                    src="https://img.youtube.com/vi/2iLEARE6LvM/maxresdefault.jpg"
-                    alt="Short Form Vertical"
+                    src={`https://img.youtube.com/vi/${getVideoInfo(short.url)?.id}/maxresdefault.jpg`}
+                    alt={short.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-100"
                   />
                   <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -311,15 +316,15 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <div className="absolute bottom-5 left-5 z-20">
-                    <p className="text-brand-accent text-xs font-bold mb-1">1.2M Views</p>
-                    <h3 className="text-lg font-bold text-white leading-tight">Hook Breakdown</h3>
+                    <p className="text-brand-accent text-xs font-bold mb-1">{short.views}</p>
+                    <h3 className="text-lg font-bold text-white leading-tight">{short.title}</h3>
                   </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
-        
+
         <section id="services" className="py-20 md:py-24 px-4 sm:px-6 border-b border-white/5 bg-[#080808]">
           <div className="max-w-5xl mx-auto">
             <div className="flex flex-col items-center text-center mb-12 md:mb-16">
@@ -356,7 +361,7 @@ export default function LandingPage() {
                 }
               ].map((service, i) => (
                 <div key={i} className="group relative flex flex-col bg-[#111111] p-8 md:p-10 rounded-[2.5rem] border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden cursor-default hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-                  
+
                   <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                   <div className="absolute -bottom-8 -right-4 text-[14rem] font-bold text-white/[0.035] group-hover:text-brand-accent/[0.08] group-hover:-translate-y-6 group-hover:-rotate-3 transition-all duration-700 leading-none pointer-events-none select-none font-mono z-0">
@@ -400,9 +405,9 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        
+
         <section id="why-us" className="py-20 md:py-32 px-4 sm:px-6 relative overflow-hidden">
-          
+
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-brand-accent/5 blur-[80px] md:blur-[120px] rounded-full pointer-events-none -z-10" />
 
           <div className="max-w-5xl mx-auto z-10 relative">
@@ -613,7 +618,7 @@ export default function LandingPage() {
         <section id="contact" className="py-20 md:py-32 px-4 sm:px-6">
           <div className="max-w-3xl mx-auto">
             <div className="bg-[#111111] p-6 sm:p-8 md:p-16 rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
-              
+
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-50" />
 
               <div className="text-center mb-10 md:mb-16">
@@ -627,7 +632,7 @@ export default function LandingPage() {
 
               <form className="space-y-8 md:space-y-10" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 gap-8 md:gap-10">
-                  
+
                   <div className="space-y-3">
                     <label className="text-xs font-bold text-white/70 uppercase tracking-widest flex items-center gap-1">
                       Name <span className="text-brand-accent">*</span>
@@ -827,14 +832,11 @@ export default function LandingPage() {
               <p className="text-white/30 text-[10px] font-semibold tracking-wider">
                 © {new Date().getFullYear()} Kontent Company. All rights reserved.
               </p>
-              <div className="flex gap-6 justify-center">
-                <span className="text-white/20 text-[9px] uppercase font-bold tracking-[0.3em] hover:text-white transition-colors cursor-pointer">Privacy</span>
-                <span className="text-white/20 text-[9px] uppercase font-bold tracking-[0.3em] hover:text-white transition-colors cursor-pointer">Terms</span>
-              </div>
+
             </div>
           </div>
         </footer>
-        
+
         {selectedVideo && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 md:px-8 py-10 md:py-12">
             <div
