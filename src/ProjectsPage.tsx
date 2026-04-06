@@ -12,6 +12,14 @@ const projects = [
     featured: true,
   },
   {
+    title: "Cinematic Narrative Edit",
+    category: "Short films",
+    tags: ["Narrative", "Storytelling"],
+    img: "https://img.youtube.com/vi/ve8vEoTaKPg/maxresdefault.jpg",
+    url: "https://youtu.be/ve8vEoTaKPg",
+    featured: false,
+  },
+  {
     title: "Documentary style Edit",
     category: "Youtube Videos",
     tags: ["Color", "VFX"],
@@ -37,7 +45,7 @@ const projects = [
   },
   {
     title: "Cinematic Commercial",
-    category: "Youtube Videos",
+    category: "Short films",
     tags: ["Commercial", "Editing"],
     img: "https://img.youtube.com/vi/tfN2bBVah_c/maxresdefault.jpg",
     url: "https://youtu.be/tfN2bBVah_c",
@@ -45,7 +53,7 @@ const projects = [
   },
   {
     title: "Visual Breakdown",
-    category: "Motion graphics",
+    category: "Short films",
     tags: ["Motion", "VFX"],
     img: "https://img.youtube.com/vi/sDmlbheeE8w/maxresdefault.jpg",
     url: "https://youtu.be/sDmlbheeE8w?si=MbdERLOJtkxPS5Bz",

@@ -131,7 +131,7 @@ export default function LandingPage() {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a href="#recent-work" className="w-full sm:w-auto justify-center px-10 py-4 rounded-full border border-white/20 hover:border-white/40 text-white font-semibold text-base tracking-wide transition-all flex items-center gap-2 group hover:bg-white/5 hover:scale-105 active:scale-95">
-                  View Showreel
+                  View Portfolio
                   <Play className="w-4 h-4 fill-current opacity-80" />
                 </a>
               </div>
@@ -480,7 +480,7 @@ export default function LandingPage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-4 md:gap-6">
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
                 Why Top Brands <br className="hidden md:block" />
-                <span className="text-brand-accent">Choose KOco.</span>
+                <span className="text-brand-accent">Choose KOCO</span>
               </h2>
               <p className="text-white/50 text-sm md:text-lg max-w-sm">
                 We blend data-driven psychology with cinematic storytelling to create content that dominates feeds.
@@ -680,14 +680,14 @@ export default function LandingPage() {
           <div className="max-w-5xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full border border-white/10 text-white/70 text-xs font-semibold uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
-              Our People
+              About Founders
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 {
                   name: "Gourav Yadav",
-                  desc: "Gourav Yadav, an engineering undergraduate from Indore, is a content creator and growth strategist with 16K+ YouTube subscribers and four years’ experience scaling brands through storytelling.",
+                  desc: "Gourav Yadav, an engineering undergraduate from Indore, is a content creator and growth strategist with 16K+ YouTube subscribers and four years of experience scaling brands through storytelling.",
                   img: "/ABOUT IMAGE/Gourav Yadav.jpg",
                   insta: "https://www.instagram.com/gouravunfi1tered/",
                   linkedin: "https://www.linkedin.com/in/gouravyadav01",
