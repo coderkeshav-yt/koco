@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, X, ArrowUpRight, Phone, Mail, MapPin } from 'lucide-react';
+import { Play, X, ArrowUpRight, Phone, Mail, MapPin, Maximize2 } from 'lucide-react';
 
 const projects = [
   {
@@ -67,28 +67,108 @@ const projects = [
   { title: "Brand Identity", category: "Reels", tags: ["Brand", "Style"], img: "https://img.youtube.com/vi/iRHiEUS5JqI/maxresdefault.jpg", url: "https://youtube.com/shorts/iRHiEUS5JqI" },
   { title: "Social Hook", category: "Reels", tags: ["Social", "Hook"], img: "https://img.youtube.com/vi/2svGsEEL9eo/maxresdefault.jpg", url: "https://youtube.com/shorts/2svGsEEL9eo" },
   { title: "Editing Flow", category: "Reels", tags: ["Flow", "Edit"], img: "https://img.youtube.com/vi/u-bPyxzzdMA/maxresdefault.jpg", url: "https://youtube.com/shorts/u-bPyxzzdMA" },
+  // Graphics and Designs
+  {
+    title: "Japanese House Concept",
+    category: "Graphics and Designs",
+    tags: ["3D", "Architecture"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/japnese_house.jpg_q3dkrt.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/japnese_house.jpg_q3dkrt.jpg",
+  },
+  {
+    title: "Modern Interior Visual",
+    category: "Graphics and Designs",
+    tags: ["Design", "3D"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/1.3.jpg_naxs6o.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/1.3.jpg_naxs6o.jpg",
+  },
+  {
+    title: "Abstract Art Study",
+    category: "Graphics and Designs",
+    tags: ["Art", "Abstract"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482119/3.jpg_rp88di.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482119/3.jpg_rp88di.jpg",
+  },
+  {
+    title: "Creative Visual",
+    category: "Graphics and Designs",
+    tags: ["Graphics", "Creative"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/2.2.jpg_oitzxj.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/2.2.jpg_oitzxj.jpg",
+  },
+  {
+    title: "Premium Envelopes Mockup",
+    category: "Graphics and Designs",
+    tags: ["Branding", "Mockup"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/Envelopes_Mockup_1.jpg_ulelzm.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/Envelopes_Mockup_1.jpg_ulelzm.jpg",
+  },
+  {
+    title: "Hoodie 3D Render",
+    category: "Graphics and Designs",
+    tags: ["3D", "Apparel"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482121/Hoodie_3d_render.jpg_m8hqdg.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482121/Hoodie_3d_render.jpg_m8hqdg.jpg",
+  },
+  {
+    title: "P-Cap Mockup Design",
+    category: "Graphics and Designs",
+    tags: ["Branding", "Style"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482121/Free_P-Cap_Mockup_PSD.jpg_llvimf.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482121/Free_P-Cap_Mockup_PSD.jpg_llvimf.jpg",
+  },
+  {
+    title: "Edhytronix Identity",
+    category: "Graphics and Designs",
+    tags: ["Logo", "Design"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/Edhytronix.jpg_yalt6s.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482120/Edhytronix.jpg_yalt6s.jpg",
+  },
+  {
+    title: "Stationary Brand Mockup",
+    category: "Graphics and Designs",
+    tags: ["Branding", "Corporate"],
+    img: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482123/stationary_mockup.jpg_qiptiq.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/image/upload/q_auto/f_auto/v1775482123/stationary_mockup.jpg_qiptiq.jpg",
+  },
+  {
+    title: "Background Animation",
+    category: "Graphics and Designs",
+    tags: ["Animation", "Background"],
+    img: "https://res.cloudinary.com/dkwkqeklk/video/upload/q_auto/f_auto/v1775482122/Background_Animation_zxg0jp.jpg",
+    url: "https://res.cloudinary.com/dkwkqeklk/video/upload/q_auto/f_auto/v1775482122/Background_Animation_zxg0jp.mp4",
+  },
 ];
 
 const categories = ["All", "Youtube Videos", "Reels", "Short films", "Motion graphics", "Graphics and Designs"];
 
-const getVideoInfo = (url: string) => {
-  if (url === "#") return null;
-  const isShort = url.includes('shorts/');
-  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
-  return match ? { id: match[1], isShort } : null;
+const getProjectInfo = (project: { category: string, url: string }) => {
+  if (project.url === "#") return null;
+
+  const ytMatch = project.url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|shorts\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+  if (ytMatch) {
+    return { type: 'youtube', id: ytMatch[1], isShort: project.url.includes('shorts/') };
+  }
+
+  if (project.url.endsWith('.mp4')) {
+    return { type: 'video', url: project.url };
+  }
+
+  if (project.category === "Graphics and Designs") {
+    return { type: 'image', url: project.url };
+  }
+
+  return null;
 };
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedVideo, setSelectedVideo] = useState<{ id: string, isShort: boolean } | null>(null);
+  const [selectedItem, setSelectedItem] = useState<{ type: string, id?: string, url?: string, isShort?: boolean } | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-
     window.scrollTo(0, 0);
-
     const handleScroll = () => {
-
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
@@ -101,7 +181,6 @@ export default function ProjectsPage() {
 
   return (
     <div className="relative w-full min-h-screen bg-[#080808] font-sans">
-
       <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-60 mix-blend-screen" />
 
       <nav className={`fixed left-1/2 -translate-x-1/2 z-50 flex items-center justify-between rounded-full backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 ease-out ${isScrolled
@@ -124,7 +203,6 @@ export default function ProjectsPage() {
 
       <main className="relative z-10 pt-36 pb-24 px-6">
         <div className="max-w-7xl mx-auto">
-
           <div className="mb-12 md:mb-16 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 md:mb-6 rounded-full border border-white/10 text-white/60 text-xs font-semibold uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
@@ -157,8 +235,8 @@ export default function ProjectsPage() {
             <div
               className="group relative w-full aspect-[21/9] rounded-[2rem] overflow-hidden mb-8 cursor-pointer border border-white/5 hover:border-brand-accent/20 transition-all duration-500"
               onClick={() => {
-                const info = getVideoInfo(projects[0].url);
-                if (info) setSelectedVideo(info);
+                const info = getProjectInfo(projects[0]);
+                if (info) setSelectedItem(info);
               }}
             >
               <img
@@ -188,8 +266,8 @@ export default function ProjectsPage() {
                 key={i}
                 className="group cursor-pointer flex flex-col"
                 onClick={() => {
-                  const info = getVideoInfo(project.url);
-                  if (info) setSelectedVideo(info);
+                  const info = getProjectInfo(project);
+                  if (info) setSelectedItem(info);
                 }}
               >
                 <div className={`relative rounded-2xl overflow-hidden ${project.category === "Reels" ? 'aspect-[9/16]' : 'aspect-video'} bg-[#111111] border border-white/5 mb-4 shadow-lg group-hover:shadow-[0_20px_50px_rgba(252,110,32,0.12)] group-hover:border-brand-accent/20 transition-all duration-500`}>
@@ -203,12 +281,16 @@ export default function ProjectsPage() {
                   />
                   <div className="absolute inset-0 z-20 flex items-center justify-center">
                     <div className={`${project.category === "Reels" ? 'w-12 h-12' : 'w-14 h-14'} rounded-full bg-brand-accent/90 flex items-center justify-center text-white shadow-2xl transform scale-75 group-hover:scale-100 opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-sm border border-white/20`}>
-                      <Play className={`${project.category === "Reels" ? 'w-4 h-4' : 'w-5 h-5'} ml-1 fill-current`} />
+                      {project.url.endsWith('.mp4') || project.url.includes('youtu') ? (
+                        <Play className={`${project.category === "Reels" ? 'w-4 h-4' : 'w-5 h-5'} ml-1 fill-current`} />
+                      ) : (
+                        <Maximize2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                      )}
                     </div>
                   </div>
 
                   <div className="absolute bottom-3 left-3 z-20 flex gap-1.5 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    {project.tags?.map(tag => (
+                    {project.tags?.map((tag: string) => (
                       <span key={tag} className="bg-black/70 backdrop-blur-md text-[9px] text-white px-2 py-1 rounded-full border border-white/10 font-bold uppercase tracking-widest">{tag}</span>
                     ))}
                   </div>
@@ -295,26 +377,43 @@ export default function ProjectsPage() {
         </div>
       </footer>
 
-      {selectedVideo && (
+      {selectedItem && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 md:px-8 py-10 md:py-12">
           <div
             className="absolute inset-0 bg-[#050505]/95 backdrop-blur-2xl"
-            onClick={() => setSelectedVideo(null)}
+            onClick={() => setSelectedItem(null)}
           />
-          <div className={`relative w-full ${selectedVideo?.isShort ? 'max-w-sm aspect-[9/16] rounded-3xl' : 'max-w-6xl aspect-video rounded-[2rem]'} bg-black overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(252,110,32,0.15)] animate-in zoom-in-95 fade-in duration-500`}>
+          <div className={`relative w-full ${selectedItem?.isShort ? 'max-w-sm aspect-[9/16] rounded-3xl' : 'max-w-6xl aspect-video rounded-[2rem]'} bg-black overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(252,110,32,0.15)] animate-in zoom-in-95 fade-in duration-500`}>
             <button
-              onClick={() => setSelectedVideo(null)}
+              onClick={() => setSelectedItem(null)}
               className="absolute top-4 right-4 md:top-6 md:right-6 z-[110] w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:border-brand-accent transition-all duration-300 group"
             >
               <X className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform" />
             </button>
-            <iframe
-              src={`https://www.youtube.com/embed/${selectedVideo?.id}?autoplay=1&rel=0`}
-              title="Video Player"
-              className="w-full h-full border-0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+            {selectedItem.type === 'youtube' && (
+              <iframe
+                src={`https://www.youtube.com/embed/${selectedItem.id}?autoplay=1&rel=0`}
+                title="Video Player"
+                className="w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            )}
+            {selectedItem.type === 'video' && (
+              <video
+                src={selectedItem.url}
+                className="w-full h-full object-contain"
+                controls
+                autoPlay
+              />
+            )}
+            {selectedItem.type === 'image' && (
+              <img
+                src={selectedItem.url}
+                alt="Graphic project"
+                className="w-full h-full object-contain"
+              />
+            )}
           </div>
         </div>
       )}
