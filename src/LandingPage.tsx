@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Play, LineChart, Video, ArrowRight, ArrowUpRight, X, Phone, Mail, MapPin, ThumbsUp, Heart, MessageSquare } from 'lucide-react';
 import _CountUp from 'react-countup';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from './firebase';
 const CountUp = (_CountUp as any).default || _CountUp;
 
 export default function LandingPage() {
@@ -51,6 +53,19 @@ export default function LandingPage() {
     params.append('budget', formData.budget);
 
     try {
+      // Save info to Firestore Database
+      await addDoc(collection(db, "inquiries"), {
+        name: formData.name,
+        email: formData.email,
+        contact: formData.contact,
+        company: formData.company,
+        services: formData.services,
+        description: formData.description,
+        budget: formData.budget,
+        timestamp: serverTimestamp()
+      });
+
+      // Save info to Google Sheets
       await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
